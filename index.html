@@ -38,9 +38,10 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 0 20px;
+            gap: 30px;
         }
 
         .logo {
@@ -114,26 +115,51 @@
             color: #000;
         }
 
-        /* HERO VIDEO SECTION */
+        /* HERO VIDEO SECTION - CLEAN IMPLEMENTATION */
         .hero-video {
             position: relative;
+            width: 100%;
             height: 100vh;
+            min-height: 600px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: #000;
         }
 
+        /* Video Background Container */
         .hero-video-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-color: #000;
             z-index: 1;
             background: #000;
         }
 
+        /* Fallback Image */
+        .hero-fallback-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            z-index: 5;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .hero-fallback-image.show {
+            opacity: 1;
+        }
+
+        /* Individual Video Elements */
         .hero-video-background video {
             position: absolute;
             top: 0;
@@ -141,23 +167,52 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            z-index: 10;
+            transition: opacity 2s ease-in-out;
+            background-color: #000;
         }
 
+        /* First video visible by default */
+        .hero-video-background video:first-of-type {
+            opacity: 1;
+            z-index: 11;
+        }
+
+        /* Active video class for transitions */
         .hero-video-background video.active {
             opacity: 1;
+            z-index: 11;
         }
 
-        .hero-video::before {
+        .hero-video-background video:not(.active) {
+            opacity: 0;
+            z-index: 10;
+        }
+
+        /* Loading state - show poster */
+        .hero-video-background video[poster] {
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Dark Overlay - Fixed and Clean */
+        .hero-video::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+            background: linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.70) 0%,
+                rgba(0, 0, 0, 0.60) 50%,
+                rgba(0, 0, 0, 0.65) 100%
+            );
             z-index: 2;
+            pointer-events: none;
         }
 
         .hero-overlay {
@@ -166,6 +221,7 @@
             text-align: center;
             max-width: 900px;
             padding: 0 20px;
+            color: #fff;
         }
 
         .hero-title {
@@ -173,6 +229,7 @@
             font-weight: 800;
             margin-bottom: 20px;
             line-height: 1.2;
+            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
         }
 
         .hero-subtitle {
@@ -180,12 +237,14 @@
             margin-bottom: 15px;
             color: #FFC300;
             font-weight: 500;
+            text-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
         }
 
         .hero-location {
             font-size: 1.1rem;
             margin-bottom: 40px;
             color: #ccc;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
         }
 
         .hero-buttons {
@@ -990,24 +1049,51 @@
         .checkbox-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            margin-top: 10px;
         }
 
         .checkbox-item {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            padding: 12px 18px;
+            background: transparent;
+            border: 1px solid #444;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            border-color: #FFC300;
+            background: rgba(255, 195, 0, 0.05);
         }
 
         .checkbox-item input[type="checkbox"] {
-            width: auto;
+            width: 18px;
+            height: 18px;
             margin: 0;
+            cursor: pointer;
+            accent-color: #FFC300;
         }
 
         .checkbox-item label {
             margin: 0;
-            color: #ccc;
-            font-weight: normal;
+            color: #ddd;
+            font-weight: 400;
+            font-size: 0.95rem;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .checkbox-item:has(input[type="checkbox"]:checked) {
+            border-color: #FFC300;
+            background: rgba(255, 195, 0, 0.08);
+        }
+
+        .checkbox-item:has(input[type="checkbox"]:checked) label {
+            color: #FFC300;
         }
 
         .contact-info {
@@ -1158,6 +1244,14 @@
 
         /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
+            .hero-video {
+                min-height: 500px;
+            }
+
+            .hero-video-background video {
+                object-position: center center;
+            }
+
             .header-cta {
                 display: none;
             }
@@ -1311,9 +1405,6 @@
                 <img src="logo innov builders.jpg" alt="Innov Builders Logo">
             </div>
             <div class="header-cta">
-                <a href="tel:(978) 871-0597" class="phone-number">
-                    <i class="fas fa-phone"></i> (978) 871-0597
-                </a>
                 <a href="#contact" class="btn-primary">Get Free Estimate</a>
             </div>
         </div>
@@ -1322,15 +1413,20 @@
     <!-- HERO VIDEO SECTION -->
     <section class="hero-video">
         <div class="hero-video-background">
-            <video autoplay muted playsinline preload="auto">
+            <!-- Fallback image in case videos fail -->
+            <div class="hero-fallback-image" style="background-image: url('before and afters/before.jpg');"></div>
+            
+            <video id="heroVideo1" class="active" autoplay muted loop playsinline preload="auto" 
+                   poster="before and afters/before.jpg">
                 <source src="1. bloco herder overlay/kitchen remodeling.mp4" type="video/mp4">
             </video>
-            <video autoplay muted playsinline preload="auto">
+            <video id="heroVideo2" autoplay muted loop playsinline preload="auto"
+                   poster="before and afters/before.jpg">
                 <source src="1. bloco herder overlay/kitchen remodeling (2).mp4" type="video/mp4">
             </video>
         </div>
         <div class="hero-overlay">
-            <h1 class="hero-title">Transform Your Kitchen into the Heart of Your Home</h1>
+            <h1 class="hero-title">Build the Kitchen You’ve Always Wanted</h1>
             <p class="hero-subtitle">Tired of outdated cabinets, old countertops, and wasted space?</p>
             <p class="hero-location">📍 Serving Massachusetts Homeowners with 11+ Years of Excellence</p>
             <div class="hero-buttons">
@@ -1455,8 +1551,8 @@
         <div class="portfolio-grid">
             <div class="portfolio-item">
                 <div class="before-after-slider" data-project="kitchen-remodel">
-                    <img src="before and afters/before.jpg" alt="Before" class="before-image">
-                    <img src="before and afters/after.HEIC" alt="After" class="after-image">
+                    <img src="before and afters/after (1).png" alt="Kitchen After Remodeling" class="before-image">
+                    <img src="before and afters/before.jpg" alt="Kitchen Before Remodeling" class="after-image">
                     <div class="slider-handle"></div>
                     <div class="before-after-labels">
                         <span class="before-label">BEFORE</span>
@@ -1485,44 +1581,60 @@
             
             <div class="progress-slider">
                 <div class="slider-container">
-                    <div class="slider-track" id="sliderTrack">
+                    <div class="slider-track" id="progressSliderTrack">
                         <div class="slider-item">
-                            <img src="sessão de fotos slider/483922832_601384886387308_7200494897753210291_n.jpg" alt="Kitchen Before">
+                            <img src="lexington-progress/1.png" alt="Phase 1 - Starting Point">
                             <div class="slider-overlay">
-                                <h3>Before - Original Kitchen</h3>
-                                <p>The starting point of our transformation journey</p>
+                                <h3>Phase 1 - Starting Point</h3>
+                                <p>Before the remodel, the room was closed off and untouched</p>
                             </div>
                         </div>
                         <div class="slider-item">
-                            <img src="sessão de fotos slider/484031374_601384859720644_150356441767015240_n.jpg" alt="Demolition Phase">
+                            <img src="lexington-progress/2.png" alt="Phase 2 - Wall Removal">
                             <div class="slider-overlay">
-                                <h3>Demolition & Preparation</h3>
-                                <p>Carefully removing old fixtures and preparing the space</p>
+                                <h3>Phase 2 - Wall Removal</h3>
+                                <p>Demolition began, opening the wall between the kitchen and living area</p>
                             </div>
                         </div>
                         <div class="slider-item">
-                            <img src="sessão de fotos slider/484484717_601384889720641_4598490299361360625_n.jpg" alt="Construction Phase">
+                            <img src="lexington-progress/3.png" alt="Phase 3 - Preparation Stage">
                             <div class="slider-overlay">
-                                <h3>Construction in Progress</h3>
-                                <p>Installing new cabinetry and infrastructure</p>
+                                <h3>Phase 3 - Preparation Stage</h3>
+                                <p>Structure and ceiling open for new wiring and lighting</p>
                             </div>
                         </div>
                         <div class="slider-item">
-                            <img src="sessão de fotos slider/484590506_601384876387309_8447069373703294015_n.jpg" alt="Final Result">
+                            <img src="lexington-progress/5.png" alt="Phase 4 - Finishing Work">
                             <div class="slider-overlay">
-                                <h3>Beautiful Final Result</h3>
-                                <p>Your dream kitchen brought to life</p>
+                                <h3>Phase 4 - Finishing Work</h3>
+                                <p>New floors, island installed, and modern light fixture added</p>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <img src="lexington-progress/6.png" alt="Phase 5 - Final Touches">
+                            <div class="slider-overlay">
+                                <h3>Phase 5 - Final Touches</h3>
+                                <p>Kitchen complete with cabinets, quartz countertops, and backsplash</p>
+                            </div>
+                        </div>
+                        <div class="slider-item">
+                            <img src="lexington-progress/7.png" alt="Phase 6 - Completed Project">
+                            <div class="slider-overlay">
+                                <h3>Phase 6 - Completed Project</h3>
+                                <p>Full view of the finished open space — kitchen and living area combined</p>
                             </div>
                         </div>
                     </div>
-                    <button class="slider-arrows slider-prev" onclick="changeSlide(-1)">‹</button>
-                    <button class="slider-arrows slider-next" onclick="changeSlide(1)">›</button>
+                    <button class="slider-arrows slider-prev" onclick="changeProgressSlide(-1)">‹</button>
+                    <button class="slider-arrows slider-next" onclick="changeProgressSlide(1)">›</button>
                 </div>
                 <div class="slider-controls">
-                    <span class="slider-dot active" onclick="currentSlide(1)"></span>
-                    <span class="slider-dot" onclick="currentSlide(2)"></span>
-                    <span class="slider-dot" onclick="currentSlide(3)"></span>
-                    <span class="slider-dot" onclick="currentSlide(4)"></span>
+                    <span class="slider-dot progress-dot active" onclick="currentProgressSlide(1)"></span>
+                    <span class="slider-dot progress-dot" onclick="currentProgressSlide(2)"></span>
+                    <span class="slider-dot progress-dot" onclick="currentProgressSlide(3)"></span>
+                    <span class="slider-dot progress-dot" onclick="currentProgressSlide(4)"></span>
+                    <span class="slider-dot progress-dot" onclick="currentProgressSlide(5)"></span>
+                    <span class="slider-dot progress-dot" onclick="currentProgressSlide(6)"></span>
                 </div>
             </div>
         </div>
@@ -1593,6 +1705,62 @@
             </video>
         </div>
     </section>
+
+    <!-- PHOTO GALLERY SLIDER SECTION -->
+    <section class="portfolio section">
+        <h2 class="section-title">Our Recent Kitchen Projects</h2>
+        <p class="section-subtitle">Explore our latest kitchen transformations</p>
+        
+        <div class="progress-slider">
+            <div class="slider-container">
+                <div class="slider-track" id="photoSliderTrack">
+                    <div class="slider-item">
+                        <img src="sessão de fotos slider/483922832_601384886387308_7200494897753210291_n.jpg" alt="Kitchen Project 1">
+                        <div class="slider-overlay">
+                            <h3>Modern Kitchen Design</h3>
+                            <p>Complete renovation with custom finishes</p>
+                        </div>
+                    </div>
+                    <div class="slider-item">
+                        <img src="sessão de fotos slider/484031374_601384859720644_150356441767015240_n.jpg" alt="Kitchen Project 2">
+                        <div class="slider-overlay">
+                            <h3>Contemporary Kitchen</h3>
+                            <p>Sleek design with premium materials</p>
+                        </div>
+                    </div>
+                    <div class="slider-item">
+                        <img src="sessão de fotos slider/484484717_601384889720641_4598490299361360625_n.jpg" alt="Kitchen Project 3">
+                        <div class="slider-overlay">
+                            <h3>Elegant Kitchen Remodel</h3>
+                            <p>Timeless style meets modern functionality</p>
+                        </div>
+                    </div>
+                    <div class="slider-item">
+                        <img src="sessão de fotos slider/484590506_601384876387309_8447069373703294015_n.jpg" alt="Kitchen Project 4">
+                        <div class="slider-overlay">
+                            <h3>Luxury Kitchen Transformation</h3>
+                            <p>High-end finishes and custom cabinetry</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-arrows slider-prev" onclick="changePhotoSlide(-1)">‹</button>
+                <button class="slider-arrows slider-next" onclick="changePhotoSlide(1)">›</button>
+            </div>
+            <div class="slider-controls">
+                <span class="slider-dot photo-dot active" onclick="currentPhotoSlide(1)"></span>
+                <span class="slider-dot photo-dot" onclick="currentPhotoSlide(2)"></span>
+                <span class="slider-dot photo-dot" onclick="currentPhotoSlide(3)"></span>
+                <span class="slider-dot photo-dot" onclick="currentPhotoSlide(4)"></span>
+            </div>
+        </div>
+        
+        <div class="text-center" style="margin-top: 40px;">
+            <a href="#contact" class="btn-primary">
+                <i class="fas fa-arrow-right"></i> Start Your Kitchen Project Today
+            </a>
+        </div>
+    </section>
+
     <section class="testimonials">
         <div class="section">
             <h2 class="section-title" style="color: #333;">What Our Kitchen Clients Are Saying</h2>
@@ -1647,20 +1815,20 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="project" style="color: #FFC300; font-weight: 600;">What type of kitchen project are you planning? *</label>
+                    <label for="project" style="color: #FFC300; font-weight: 600; margin-bottom: 15px; display: block;">What type of kitchen project are you planning? *</label>
                     <div class="checkbox-group">
-                        <div class="checkbox-item">
+                        <label class="checkbox-item">
                             <input type="checkbox" id="full-renovation" name="project_type[]" value="full-renovation">
-                            <label for="full-renovation">☐ Full renovation</label>
-                        </div>
-                        <div class="checkbox-item">
+                            <label for="full-renovation">Full renovation</label>
+                        </label>
+                        <label class="checkbox-item">
                             <input type="checkbox" id="partial-remodel" name="project_type[]" value="partial-remodel">
-                            <label for="partial-remodel">☐ Partial remodel (cabinets, countertops, flooring)</label>
-                        </div>
-                        <div class="checkbox-item">
+                            <label for="partial-remodel">Partial remodel (cabinets, countertops, flooring)</label>
+                        </label>
+                        <label class="checkbox-item">
                             <input type="checkbox" id="not-sure" name="project_type[]" value="not-sure">
-                            <label for="not-sure">☐ Not sure yet</label>
-                        </div>
+                            <label for="not-sure">Not sure yet</label>
+                        </label>
                     </div>
                 </div>
                 
@@ -1792,102 +1960,218 @@
             observer.observe(section);
         });
 
-        // Hero Video Slider Functionality
-        function initHeroVideoSlider() {
-            const videos = Array.from(document.querySelectorAll('.hero-video-background video'));
-            if (!videos.length) return;
+        // Hero Video Slider with Smooth Fade Transition and Error Handling
+        (function() {
+            let currentVideoIndex = 0;
+            const videos = document.querySelectorAll('.hero-video-background video');
+            const fallbackImage = document.querySelector('.hero-fallback-image');
+            let videosFailed = 0;
+            let videosLoaded = 0;
+            
+            if (videos.length === 0) {
+                showFallback();
+                return;
+            }
 
-            let currentVideo = 0;
-            let rotationTimer;
-            let isInitialized = false;
+            // Function to show fallback image
+            function showFallback() {
+                if (fallbackImage) {
+                    fallbackImage.classList.add('show');
+                    console.log('Showing fallback image - videos not available');
+                }
+            }
 
-            const activateVideo = (index) => {
-                videos.forEach((video, i) => {
-                    const isActive = i === index;
-                    video.classList.toggle('active', isActive);
-                    if (isActive) {
-                        const playPromise = video.play();
-                        if (playPromise !== undefined) {
-                            playPromise.catch(() => {});
-                        }
-                    } else {
-                        video.pause();
-                        video.currentTime = 0;
+            // Function to hide fallback and show videos
+            function hideFallback() {
+                if (fallbackImage) {
+                    fallbackImage.classList.remove('show');
+                }
+            }
+
+            // Ensure first video is playing and visible
+            videos[0].classList.add('active');
+            
+            // Try to play first video
+            const playPromise = videos[0].play();
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        console.log('First video playing successfully');
+                        hideFallback();
+                    })
+                    .catch(e => {
+                        console.log('Autoplay prevented or video error:', e);
+                    });
+            }
+
+            // Preload second video if available
+            if (videos.length > 1) {
+                videos[1].load();
+            }
+
+            function fadeToNextVideo() {
+                if (videos.length <= 1 || videosFailed >= videos.length) return;
+
+                const currentVideo = videos[currentVideoIndex];
+                const nextIndex = (currentVideoIndex + 1) % videos.length;
+                const nextVideo = videos[nextIndex];
+
+                // Start playing next video
+                nextVideo.currentTime = 0;
+                const playPromise = nextVideo.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(e => {
+                        console.log('Next video play prevented:', e);
+                    });
+                }
+
+                // Add active class to next video (triggers fade in)
+                nextVideo.classList.add('active');
+
+                // Wait for fade transition, then remove active from current
+                setTimeout(() => {
+                    currentVideo.classList.remove('active');
+                    currentVideoIndex = nextIndex;
+                }, 2000); // Match CSS transition duration
+            }
+
+            // Change video every 8 seconds
+            const videoInterval = setInterval(() => {
+                if (videosFailed >= videos.length) {
+                    clearInterval(videoInterval);
+                    showFallback();
+                } else {
+                    fadeToNextVideo();
+                }
+            }, 8000);
+
+            // Handle video events for each video
+            videos.forEach((video, index) => {
+                // Error handling
+                video.addEventListener('error', (e) => {
+                    console.error(`Hero video ${index + 1} failed to load:`, e);
+                    videosFailed++;
+                    
+                    // If all videos failed, show fallback
+                    if (videosFailed >= videos.length) {
+                        showFallback();
+                        clearInterval(videoInterval);
                     }
                 });
-            };
 
-            const scheduleNextRotation = () => {
-                clearTimeout(rotationTimer);
-                rotationTimer = setTimeout(() => {
-                    currentVideo = (currentVideo + 1) % videos.length;
-                    activateVideo(currentVideo);
-                    scheduleNextRotation();
-                }, 8000);
-            };
-
-            const startRotation = () => {
-                if (isInitialized) return;
-                isInitialized = true;
-                activateVideo(currentVideo);
-                scheduleNextRotation();
-            };
-
-            videos.forEach((video, index) => {
-                video.removeAttribute('loop');
-                if (!video.hasAttribute('playsinline')) {
-                    video.setAttribute('playsinline', '');
-                }
-                video.addEventListener('ended', () => {
-                    currentVideo = (currentVideo + 1) % videos.length;
-                    activateVideo(currentVideo);
-                    scheduleNextRotation();
+                // Success handling
+                video.addEventListener('loadeddata', () => {
+                    videosLoaded++;
+                    console.log(`Hero video ${index + 1} loaded successfully (${videosLoaded}/${videos.length})`);
+                    
+                    // Once first video loads, hide fallback
+                    if (index === 0) {
+                        hideFallback();
+                    }
                 });
 
-                if (index === 0) {
-                    video.addEventListener('loadeddata', startRotation);
-                }
+                // Check if video can play
+                video.addEventListener('canplay', () => {
+                    console.log(`Hero video ${index + 1} can play`);
+                    if (index === 0) {
+                        hideFallback();
+                    }
+                });
+
+                // Handle stalled/suspended videos
+                video.addEventListener('stalled', () => {
+                    console.warn(`Hero video ${index + 1} stalled`);
+                });
+
+                video.addEventListener('suspend', () => {
+                    console.log(`Hero video ${index + 1} suspended (normal on some browsers)`);
+                });
             });
 
-            // Fallback in case the first video takes too long to load
-            startRotation();
-        }
+            // Fallback timeout - if no video loads in 5 seconds, show fallback
+            setTimeout(() => {
+                if (videosLoaded === 0 && videosFailed === 0) {
+                    console.log('Videos taking too long to load, showing fallback');
+                    showFallback();
+                }
+            }, 5000);
 
-        document.addEventListener('DOMContentLoaded', initHeroVideoSlider);
+            // User interaction to resume video (for autoplay restrictions)
+            document.addEventListener('click', function resumeVideo() {
+                videos.forEach(video => {
+                    if (video.paused) {
+                        video.play().then(() => {
+                            hideFallback();
+                        }).catch(e => console.log('Play on click failed:', e));
+                    }
+                });
+            }, { once: true });
+        })();
 
-        // Progress Slider Functionality
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slider-item');
-        const dots = document.querySelectorAll('.slider-dot');
-        const track = document.getElementById('sliderTrack');
+        // Progress Slider (Kitchen Renovation Progress Gallery)
+        let currentProgressSlideIndex = 0;
+        const progressSlides = document.querySelectorAll('#progressSliderTrack .slider-item');
+        const progressDots = document.querySelectorAll('.progress-dot');
+        const progressTrack = document.getElementById('progressSliderTrack');
 
-        function showSlide(index) {
-            currentSlideIndex = index;
-            if (track) {
-                track.style.transform = `translateX(-${index * 100}%)`;
+        function showProgressSlide(index) {
+            currentProgressSlideIndex = index;
+            if (progressTrack) {
+                progressTrack.style.transform = `translateX(-${index * 100}%)`;
             }
             
-            // Update dots
-            dots.forEach((dot, i) => {
+            progressDots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === index);
             });
         }
 
-        function changeSlide(direction) {
-            currentSlideIndex += direction;
-            if (currentSlideIndex >= slides.length) currentSlideIndex = 0;
-            if (currentSlideIndex < 0) currentSlideIndex = slides.length - 1;
-            showSlide(currentSlideIndex);
+        function changeProgressSlide(direction) {
+            currentProgressSlideIndex += direction;
+            if (currentProgressSlideIndex >= progressSlides.length) currentProgressSlideIndex = 0;
+            if (currentProgressSlideIndex < 0) currentProgressSlideIndex = progressSlides.length - 1;
+            showProgressSlide(currentProgressSlideIndex);
         }
 
-        function currentSlide(index) {
-            showSlide(index - 1);
+        function currentProgressSlide(index) {
+            showProgressSlide(index - 1);
         }
 
-        // Auto-advance slides
+        // Auto-advance progress slides every 10 seconds
         setInterval(() => {
-            changeSlide(1);
-        }, 5000);
+            changeProgressSlide(1);
+        }, 30000);
+
+        // Photo Gallery Slider
+        let currentPhotoSlideIndex = 0;
+        const photoSlides = document.querySelectorAll('#photoSliderTrack .slider-item');
+        const photoDots = document.querySelectorAll('.photo-dot');
+
+        function showPhotoSlide(index) {
+            currentPhotoSlideIndex = index;
+            const offset = -index * 100;
+            document.getElementById('photoSliderTrack').style.transform = `translateX(${offset}%)`;
+            
+            photoDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function changePhotoSlide(direction) {
+            currentPhotoSlideIndex += direction;
+            if (currentPhotoSlideIndex >= photoSlides.length) currentPhotoSlideIndex = 0;
+            if (currentPhotoSlideIndex < 0) currentPhotoSlideIndex = photoSlides.length - 1;
+            showPhotoSlide(currentPhotoSlideIndex);
+        }
+
+        function currentPhotoSlide(index) {
+            showPhotoSlide(index - 1);
+        }
+
+        // Auto-advance photo slides
+        setInterval(() => {
+            changePhotoSlide(1);
+        }, 6000);
 
         // Before/After Slider Functionality
         document.addEventListener('DOMContentLoaded', function() {
