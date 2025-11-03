@@ -2271,46 +2271,67 @@
             });
         });
 
-        // Contact Form Handling - Wait for DOM to be ready
+        // Contact Form Handling - Send to webhook (Google)
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, setting up form handler');
-            
+            const WEBHOOK_URL = 'https://hook.us2.make.com/ctp3mh229k0mi9ujiy1xcu1xh84fpa3x';
+            const CAMPAIGN_NAME = 'Google';
+
             const form = document.getElementById('contactForm');
-            if (!form) {
-                console.error('Contact form not found!');
-                return;
-            }
-            
-            console.log('Contact form found, adding event listener');
-            
-            form.addEventListener('submit', function(e) {
-                console.log('Form submitted!');
+            if (!form) return;
+
+            form.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                
-                // Get form data
+
                 const formData = new FormData(this);
-                const formObject = {};
-                formData.forEach((value, key) => {
-                    formObject[key] = value;
+                const data = {};
+                for (const [key, value] of formData.entries()) {
+                    if (key.endsWith('[]')) {
+                        const baseKey = key.slice(0, -2);
+                        if (!Array.isArray(data[baseKey])) data[baseKey] = [];
+                        data[baseKey].push(value);
+                    } else if (data[key] !== undefined) {
+                        data[key] = Array.isArray(data[key]) ? [...data[key], value] : [data[key], value];
+                    } else {
+                        data[key] = value;
+                    }
+                }
+
+                const params = new URLSearchParams(window.location.search);
+                const utm = {};
+                ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'].forEach(k => {
+                    const v = params.get(k);
+                    if (v) utm[k] = v;
                 });
-                
-                console.log('Form data collected:', formObject);
-                
-                // Show loading state
+                data.meta = {
+                    campaignUrl: window.location.href,
+                    pageTitle: document.title,
+                    campaignName: CAMPAIGN_NAME,
+                    referrer: document.referrer || null,
+                    userAgent: navigator.userAgent,
+                    timestamp: new Date().toISOString(),
+                    utm
+                };
+
                 const submitBtn = this.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
                 submitBtn.disabled = true;
-                
-                console.log('Showing loading state...');
-                
-                // Simulate form processing (replace with actual form handling)
-                setTimeout(() => {
-                    console.log('Redirecting to thank you page...');
-                    
-                    // Redirect to thank you page
+
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000);
+                try {
+                    await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                        signal: controller.signal
+                    });
+                } catch (err) {
+                    console.error('Webhook error:', err);
+                } finally {
+                    clearTimeout(timeoutId);
                     window.location.href = 'thank-you.html';
-                }, 1500);
+                }
             });
         });
     </script>
