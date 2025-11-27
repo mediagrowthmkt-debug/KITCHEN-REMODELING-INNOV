@@ -1242,6 +1242,117 @@
             border-left-color: #000;
         }
 
+        /* NAME MODAL */
+        .name-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .name-modal.show {
+            display: flex;
+        }
+
+        .name-modal-content {
+            background: #1a1a1a;
+            border: 2px solid #FFC300;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 195, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .name-modal h3 {
+            color: #FFC300;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .name-modal p {
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        .name-modal input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background: #000;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .name-modal input:focus {
+            outline: none;
+            border-color: #FFC300;
+        }
+
+        .name-modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .name-modal-buttons button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .name-modal-buttons .btn-confirm {
+            background: #FFC300;
+            color: #000;
+        }
+
+        .name-modal-buttons .btn-confirm:hover {
+            background: #e6af00;
+            transform: translateY(-2px);
+        }
+
+        .name-modal-buttons .btn-cancel {
+            background: transparent;
+            border: 2px solid #666;
+            color: #fff;
+        }
+
+        .name-modal-buttons .btn-cancel:hover {
+            border-color: #fff;
+        }
+
         /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
             .hero-video {
@@ -1395,6 +1506,8 @@
         .mb-20 { margin-bottom: 20px; }
         .mb-30 { margin-bottom: 30px; }
         .mb-40 { margin-bottom: 40px; }
+        /* Ensure top lead form is visible */
+        #hero-lead { display: block !important; }
     </style>
 
     <!-- Meta Pixel Code -->
@@ -1457,10 +1570,58 @@
             <p class="hero-subtitle">Tired of outdated cabinets, old countertops, and wasted space?</p>
             <p class="hero-location">📍 Serving Massachusetts Homeowners with 11+ Years of Excellence</p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn-primary">
-                    <i class="fas fa-calculator"></i> Get Your Free Kitchen Estimate Today
+                <a href="#hero-lead" class="btn-primary">
+                    <i class="fas fa-bolt"></i> Quick Estimate Form
+                </a>
+                <a href="#contact" class="btn-secondary">
+                    <i class="fas fa-calendar-check"></i> Book Consultation
                 </a>
             </div>
+        </div>
+    </section>
+    <!-- QUICK LEAD FORM BELOW HERO -->
+    <section id="hero-lead" class="contact section" style="padding-top:40px; padding-bottom:40px; background:#111; border-top:1px solid #222; border-bottom:1px solid #222;">
+        <div class="contact-container" style="max-width:900px;">
+            <h2 class="section-title" style="font-size:2rem;">Get Your Free Kitchen Estimate</h2>
+            <p class="section-subtitle" style="margin-bottom:30px;">Start here — send your details and we’ll reach out quickly. Same fast process, same expert team.</p>
+            <form id="heroContactForm" class="contact-form lead-form" style="margin-top:0;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name2">Name *</label>
+                        <input type="text" id="name2" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email2">Email *</label>
+                        <input type="email" id="email2" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone2">Phone *</label>
+                    <input type="tel" id="phone2" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label style="color:#FFC300; font-weight:600; margin-bottom:15px; display:block;">What type of kitchen project are you planning? *</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="full-renovation-top" name="project_type[]" value="full-renovation">
+                            <label for="full-renovation-top">Full renovation</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="partial-remodel-top" name="project_type[]" value="partial-remodel">
+                            <label for="partial-remodel-top">Partial remodel (cabinets, countertops, flooring)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="not-sure-top" name="project_type[]" value="not-sure">
+                            <label for="not-sure-top">Not sure yet</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-primary" style="font-size:1.1rem; padding:16px 34px;">
+                        <i class="fas fa-paper-plane"></i> Send & Get Estimate
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
 
@@ -1921,22 +2082,153 @@
     </footer>
 
     <!-- FLOATING CALL BUTTON -->
-    <div class="floating-call" id="floatingCall">
+    <a class="floating-call" id="floatingCall" href="tel:+19788710597" aria-label="Call Innov Builders">
         <i class="fas fa-phone"></i>
         <div class="floating-call-text" id="floatingText">Get your free kitchen estimate</div>
+    </a>
+
+    <!-- NAME MODAL -->
+    <div class="name-modal" id="nameModal">
+        <div class="name-modal-content">
+            <h3><i class="fas fa-phone"></i> Before you call us...</h3>
+            <p>Please tell us your name:</p>
+            <input type="text" id="nameInput" placeholder="Enter your name" autocomplete="name">
+            <div class="name-modal-buttons">
+                <button class="btn-confirm" id="confirmCall">
+                    <i class="fas fa-phone"></i> Call Now
+                </button>
+                <button class="btn-cancel" id="cancelCall">Cancel</button>
+            </div>
+        </div>
     </div>
 
     <script>
+        // NAME MODAL FUNCTIONALITY
+        const nameModal = document.getElementById('nameModal');
+        const nameInput = document.getElementById('nameInput');
+        const confirmCallBtn = document.getElementById('confirmCall');
+        const cancelCallBtn = document.getElementById('cancelCall');
+        let pendingPhoneNumber = '';
+
+        // Function to show modal
+        function showNameModal(phoneNumber) {
+            pendingPhoneNumber = phoneNumber;
+            nameModal.classList.add('show');
+            nameInput.value = '';
+            setTimeout(() => nameInput.focus(), 300);
+        }
+
+        // Function to hide modal
+        function hideNameModal() {
+            nameModal.classList.remove('show');
+            pendingPhoneNumber = '';
+        }
+
+        // Intercept all tel: links
+        function setupCallInterception() {
+            const telLinks = document.querySelectorAll('a[href^="tel:"]');
+            console.log('Found', telLinks.length, 'tel links');
+            telLinks.forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const phoneNumber = el.getAttribute('href');
+                    console.log('Phone link clicked:', phoneNumber);
+                    showNameModal(phoneNumber);
+                }, true);
+            });
+        }
+
+        // Confirm call button
+        confirmCallBtn.addEventListener('click', function() {
+            const userName = nameInput.value.trim();
+            
+            if (!userName) {
+                nameInput.style.borderColor = '#ff4444';
+                nameInput.placeholder = 'Please enter your name';
+                nameInput.focus();
+                return;
+            }
+
+            // Store phone number before hiding modal
+            const phoneToCall = pendingPhoneNumber;
+            
+            console.log('User name:', userName);
+            console.log('Phone to call:', phoneToCall);
+
+            // Store name in localStorage for analytics
+            localStorage.setItem('userName', userName);
+            
+            // Send to webhook (Make.com)
+            fetch('https://hook.us2.make.com/3ac4ux2kswm4ajxmfuw6uibu85nkr6u5', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: userName,
+                    source: 'Ligação - Phone Call',
+                    timestamp: new Date().toISOString(),
+                    page: window.location.href
+                })
+            }).catch(error => console.log('Webhook error:', error));
+            
+            // Track with Meta Pixel if available
+            if (typeof fbq === 'function') {
+                fbq('track', 'Contact', {
+                    content_name: 'Phone Call',
+                    value: userName
+                });
+            }
+
+            // Hide modal
+            hideNameModal();
+            
+            // Make the call after a small delay to ensure tracking completes
+            setTimeout(() => {
+                console.log('Making call to:', phoneToCall);
+                if (phoneToCall) {
+                    window.location.href = phoneToCall;
+                } else {
+                    console.error('No phone number to call!');
+                }
+            }, 300);
+        });
+
+        // Cancel button
+        cancelCallBtn.addEventListener('click', hideNameModal);
+
+        // Close modal on background click
+        nameModal.addEventListener('click', function(e) {
+            if (e.target === nameModal) {
+                hideNameModal();
+            }
+        });
+
+        // Enter key to confirm
+        nameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                confirmCallBtn.click();
+            }
+        });
+
+        // Initialize call interception
+        setupCallInterception();
+        
+        // Re-apply interception after a delay to ensure all elements are ready
+        setTimeout(() => {
+            setupCallInterception();
+        }, 500);
+
         // Smooth scrolling for anchor links - all buttons lead to contact form
-        document.querySelectorAll('a[href^="#"], a.btn-primary, a.btn-secondary').forEach(anchor => {
+        // Smart smooth scrolling: go to actual href target if exists
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector('#contact');
+                const href = anchor.getAttribute('href');
+                if (!href || !href.startsWith('#')) return;
+                const target = document.querySelector(href);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
@@ -1949,14 +2241,6 @@
         setTimeout(() => {
             floatingText.classList.add('show');
         }, 5000);
-
-        // Click handler for floating button
-        floatingCall.addEventListener('click', function() {
-            document.querySelector('#contact').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
 
         // Header background on scroll
         window.addEventListener('scroll', function() {
@@ -2303,62 +2587,76 @@
             const WEBHOOK_URL = 'https://hook.us2.make.com/ctp3mh229k0mi9ujiy1xcu1xh84fpa3x';
             const CAMPAIGN_NAME = 'Meta';
 
-            const form = document.getElementById('contactForm');
-            if (!form) return;
+            // Support both top and bottom forms
+            const forms = [
+                document.getElementById('heroContactForm'),
+                document.getElementById('contactForm')
+            ].filter(Boolean);
+            if (forms.length === 0) return;
 
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
+            // Debug visibility/logging
+            console.log('Forms found:', forms.map(f => f.id));
+            forms.forEach(f => {
+                if (getComputedStyle(f).display === 'none') {
+                    console.warn('Form hidden by CSS:', f.id);
+                }
+            });
 
-                const formData = new FormData(this);
-                const data = {};
-                for (const [key, value] of formData.entries()) {
-                    if (key.endsWith('[]')) {
-                        const baseKey = key.slice(0, -2);
-                        if (!Array.isArray(data[baseKey])) data[baseKey] = [];
-                        data[baseKey].push(value);
-                    } else if (data[key] !== undefined) {
-                        data[key] = Array.isArray(data[key]) ? [...data[key], value] : [data[key], value];
-                    } else {
-                        data[key] = value;
+            forms.forEach(form => {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(this);
+                    const data = {};
+                    for (const [key, value] of formData.entries()) {
+                        if (key.endsWith('[]')) {
+                            const baseKey = key.slice(0, -2);
+                            if (!Array.isArray(data[baseKey])) data[baseKey] = [];
+                            data[baseKey].push(value);
+                        } else if (data[key] !== undefined) {
+                            data[key] = Array.isArray(data[key]) ? [...data[key], value] : [data[key], value];
+                        } else {
+                            data[key] = value;
+                        }
                     }
-                }
 
-                const params = new URLSearchParams(window.location.search);
-                const utm = {};
-                ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'].forEach(k => {
-                    const v = params.get(k);
-                    if (v) utm[k] = v;
-                });
-                data.meta = {
-                    campaignUrl: window.location.href,
-                    pageTitle: document.title,
-                    campaignName: CAMPAIGN_NAME,
-                    referrer: document.referrer || null,
-                    userAgent: navigator.userAgent,
-                    timestamp: new Date().toISOString(),
-                    utm
-                };
-
-                const submitBtn = this.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitBtn.disabled = true;
-
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 8000);
-                try {
-                    await fetch(WEBHOOK_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data),
-                        signal: controller.signal
+                    const params = new URLSearchParams(window.location.search);
+                    const utm = {};
+                    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'].forEach(k => {
+                        const v = params.get(k);
+                        if (v) utm[k] = v;
                     });
-                } catch (err) {
-                    console.error('Webhook error:', err);
-                } finally {
-                    clearTimeout(timeoutId);
-                    window.location.href = 'thank-you.html';
-                }
+                    data.meta = {
+                        campaignUrl: window.location.href,
+                        pageTitle: document.title,
+                        campaignName: CAMPAIGN_NAME,
+                        referrer: document.referrer || null,
+                        userAgent: navigator.userAgent,
+                        timestamp: new Date().toISOString(),
+                        utm
+                    };
+
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    submitBtn.disabled = true;
+
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 8000);
+                    try {
+                        await fetch(WEBHOOK_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data),
+                            signal: controller.signal
+                        });
+                    } catch (err) {
+                        console.error('Webhook error:', err);
+                    } finally {
+                        clearTimeout(timeoutId);
+                        window.location.href = 'thank-you.html';
+                    }
+                });
             });
         });
     </script>
