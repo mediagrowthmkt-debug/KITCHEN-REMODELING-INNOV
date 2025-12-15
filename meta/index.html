@@ -1801,7 +1801,7 @@ ai<!DOCTYPE html>
                 <img src="logo innov builders.jpg" alt="Innov Builders Logo">
             </div>
             <div class="header-cta">
-                <button class="btn-header" onclick="showNameModal('+19788711356')">
+                <button class="btn-header" onclick="showNameModal('tel:+19788711356')">
                     <i class="fas fa-phone"></i> Call Now
                 </button>
                 <a href="#contact" class="btn-header">
@@ -2322,7 +2322,7 @@ ai<!DOCTYPE html>
     </footer>
 
     <!-- FLOATING CALL BUTTON -->
-    <button class="floating-call" id="floatingCall" onclick="showNameModal('+19788711356')">
+    <button class="floating-call" id="floatingCall" onclick="showNameModal('tel:+19788711356')">
         <i class="fas fa-phone"></i>
         <div class="floating-call-text" id="floatingText">Get your free kitchen estimate</div>
     </button>
@@ -2516,7 +2516,9 @@ ai<!DOCTYPE html>
             setTimeout(() => {
                 console.log('Making call to:', phoneToCall);
                 if (phoneToCall) {
-                    window.location.href = phoneToCall;
+                    // Ensure tel: prefix
+                    const telLink = phoneToCall.startsWith('tel:') ? phoneToCall : 'tel:' + phoneToCall;
+                    window.location.href = telLink;
                 } else {
                     console.error('No phone number to call!');
                 }
