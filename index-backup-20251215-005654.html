@@ -32,22 +32,16 @@
             z-index: 1000;
             padding: 15px 0;
             transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 195, 0, 0.2);
-            height: 116px;
-            transform: translatex(0px) translatey(0px);
         }
 
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 0 20px;
-        }
-
-        .sticky-header .header-container {
-            transform: translatex(64px) translatey(0px);
+            gap: 30px;
         }
 
         .logo {
@@ -57,60 +51,43 @@
         }
 
         .logo img {
-            height: 90px;
+            height: 50px;
             width: auto;
-        }
-
-        .header-container .logo img {
-            display: inline-block;
-            transform: translatex(64px) translatey(0px);
-            margin-top: -21px;
-            height: 122px;
         }
 
         .header-cta {
             display: flex;
-            gap: 15px;
             align-items: center;
+            gap: 15px;
         }
 
-        .btn-header {
+        .phone-number {
+            color: #FFC300;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .phone-number:hover {
+            color: #fff;
+        }
+
+        .btn-primary {
             background: #FFC300;
             color: #000;
             padding: 12px 24px;
             border: none;
             border-radius: 8px;
             font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .btn-header:hover {
-            background: #e6af00;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 195, 0, 0.3);
-        }
-
-        .btn-primary {
-            background: #FFC300;
-            color: #000;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .btn-primary:hover {
@@ -241,122 +218,40 @@
         .hero-overlay {
             position: relative;
             z-index: 3;
-            max-width: 1200px;
+            text-align: center;
+            max-width: 900px;
             padding: 0 20px;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .hero-content {
-            flex: 1;
-            text-align: left;
+            color: #fff;
         }
 
         .hero-title {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #FFC300;
-            font-weight: 600;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .hero-description {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             margin-bottom: 15px;
-            color: #e0e0e0;
-            line-height: 1.8;
+            color: #FFC300;
+            font-weight: 500;
+            text-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
         }
 
         .hero-location {
             font-size: 1.1rem;
             margin-bottom: 40px;
             color: #ccc;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
         }
 
         .hero-buttons {
             display: flex;
             gap: 20px;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        /* HERO FORM */
-        .hero-form {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 15px;
-            max-width: 450px;
-            min-width: 400px;
-            flex-shrink: 0;
-            margin: 0;
-            border: 2px solid rgba(255, 195, 0, 0.3);
-        }
-
-        .hero-form .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .hero-form .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #FFC300;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .hero-form .form-group input,
-        .hero-form .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid rgba(255, 195, 0, 0.3);
-            border-radius: 8px;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .hero-form .form-group input:focus,
-        .hero-form .form-group select:focus {
-            outline: none;
-            border-color: #FFC300;
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .hero-form .submit-btn {
-            width: 100%;
-            background: #FFC300;
-            color: #000;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 10px;
-        }
-
-        .hero-form .submit-btn:hover {
-            background: #e6af00;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 195, 0, 0.4);
+            flex-wrap: wrap;
         }
 
         /* BEFORE AFTER VIDEO SECTION */
@@ -390,62 +285,6 @@
             width: 100%;
             height: auto;
             display: block;
-        }
-
-
-        /* PHOTO GALLERY SECTION */
-        .photo-gallery {
-            padding: 80px 0;
-            background: #0a0a0a;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 50px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            aspect-ratio: 4/3;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(255, 195, 0, 0.4);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover::after {
-            opacity: 1;
         }
 
         /* KITCHEN PROJECTS SECTION */
@@ -928,6 +767,92 @@
             transform: translateY(-10px);
         }
 
+        /* BEFORE AFTER SLIDER */
+        .before-after-slider {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            cursor: col-resize;
+            user-select: none;
+        }
+
+        .before-after-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .before-image {
+            z-index: 1;
+        }
+
+        .after-image {
+            z-index: 2;
+            clip-path: inset(0 50% 0 0);
+            transition: clip-path 0.3s ease;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: #FFC300;
+            z-index: 3;
+            cursor: col-resize;
+            transform: translateX(-50%);
+        }
+
+        .slider-handle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #FFC300;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            border: 3px solid #000;
+        }
+
+        .slider-handle::after {
+            content: '⟷';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #000;
+            font-weight: bold;
+            font-size: 12px;
+            line-height: 1;
+        }
+
+        .before-after-labels {
+            position: absolute;
+            top: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .before-label,
+        .after-label {
+            background: rgba(0, 0, 0, 0.8);
+            color: #FFC300;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
         .portfolio-image {
             height: 250px;
             background-size: cover;
@@ -1271,12 +1196,10 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            font-family: 'Inter', sans-serif;
             text-decoration: none;
             box-shadow: 0 4px 20px rgba(255, 195, 0, 0.3);
             transition: all 0.3s ease;
@@ -1319,221 +1242,18 @@
             border-left-color: #000;
         }
 
-        /* NAME MODAL */
-        .name-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .name-modal.show {
-            display: flex;
-        }
-
-        .name-modal-content {
-            background: #1a1a1a;
-            border: 2px solid #FFC300;
-            border-radius: 15px;
-            padding: 40px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(255, 195, 0, 0.3);
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .name-modal h3 {
-            color: #FFC300;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .name-modal p {
-            color: #ccc;
-            margin-bottom: 25px;
-        }
-
-        .name-modal input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #333;
-            border-radius: 8px;
-            background: #000;
-            color: #fff;
-            font-size: 1rem;
-            margin-bottom: 20px;
-            transition: border-color 0.3s ease;
-        }
-
-        .name-modal input:focus {
-            outline: none;
-            border-color: #FFC300;
-        }
-
-        .name-modal-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .name-modal-buttons button {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .name-modal-buttons .btn-confirm {
-            background: #FFC300;
-            color: #000;
-        }
-
-        .name-modal-buttons .btn-confirm:hover {
-            background: #e6af00;
-            transform: translateY(-2px);
-        }
-
-        .name-modal-buttons .btn-cancel {
-            background: transparent;
-            border: 2px solid #666;
-            color: #fff;
-        }
-
-        .name-modal-buttons .btn-cancel:hover {
-            border-color: #fff;
-        }
-
-        /* CUSTOM ADJUSTMENTS */
-        /* Hero content */
-        .hero-video .hero-content {
-            margin-top: 98px;
-        }
-
-        /* Link */
-        .header-container .header-cta a {
-            display: flex;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Header - Hide second button by default */
-        .header-container .header-cta .btn-header:nth-child(2) {
-            visibility: hidden;
-        }
-
         /* RESPONSIVE DESIGN */
-        @media (max-width: 974px) {
-            .header-container .header-cta a {
-                transform: translatex(10px) translatey(0px);
-            }
-            
-            .header-container .logo img {
-                transform: translatex(44px) translatey(0px) !important;
-            }
-        }
-
         @media (max-width: 768px) {
-            /* Hero overlay */
-            .hero-video .hero-overlay {
-                height: 744px;
-            }
-            
-            /* Hero video */
-            .hero-video {
-                height: 1586px;
-                padding-top: 0px;
-                margin-top: -46px;
-                min-width: 87px;
-                transform: translatex(0px) translatey(0px);
-            }
-            
-            /* Hero content */
-            .hero-video .hero-content {
-                padding-top: 0px;
-                padding-bottom: 0px;
-                margin-top: -50px;
-                margin-bottom: -25px;
-                transform: translatex(-3px) translatey(-82px);
-            }
-            
-            /* Hero form */
-            .hero-video .hero-form {
-                margin-top: -50px;
-            }
             .hero-video {
                 min-height: 500px;
-                padding: 150px 0 80px;
             }
 
             .hero-video-background video {
                 object-position: center center;
             }
 
-            .hero-overlay {
-                flex-direction: column;
-                text-align: center;
-                gap: 80px;
-            }
-
-            .hero-content {
-                text-align: center;
-            }
-
-            .hero-form {
-                width: 100%;
-                min-width: auto;
-                padding: 30px 25px;
-                margin-top: 30px;
-            }
-
-            .hero-form .form-group {
-                margin-bottom: 25px;
-            }
-
-            .hero-form .form-group input,
-            .hero-form .form-group select {
-                padding: 15px;
-            }
-
-            .hero-form .submit-btn {
-                padding: 18px;
-            }
-
             .header-cta {
-                display: flex;
-                gap: 10px;
-            }
-
-            .header-cta .btn-header {
-                padding: 10px 20px;
-                font-size: 0.9rem;
+                display: none;
             }
 
             .hero-title {
@@ -1544,29 +1264,13 @@
                 font-size: 1.1rem;
             }
 
-            .hero-description {
-                font-size: 1.1rem;
-            }
-
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                margin-top: 30px;
             }
 
             .logo img {
                 height: 45px;
-            }
-
-            .header-container {
-                padding: 0 15px;
-            }
-
-            .header-container .logo img {
-                transform: translatex(0px) translatey(0px) !important;
-                margin-top: 0 !important;
-                height: 60px !important;
             }
 
             .benefits-grid,
@@ -1602,10 +1306,6 @@
             .portfolio-grid,
             .projects-gallery {
                 grid-template-columns: 1fr;
-            }
-            
-            .before-after-slider {
-                height: 300px;
             }
 
             .form-row {
@@ -1658,11 +1358,6 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1676,20 +1371,6 @@
 
             .contact-form {
                 padding: 30px 20px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            /* Hero form */
-            .hero-video .hero-form {
-                margin-top: 140px;
-            }
-        }
-
-        @media (min-width: 975px) {
-            /* Link */
-            .header-container .header-cta a {
-                transform: translatex(0px) translatey(0px);
             }
         }
 
@@ -1724,12 +1405,7 @@
                 <img src="logo innov builders.jpg" alt="Innov Builders Logo">
             </div>
             <div class="header-cta">
-                <button class="btn-header" onclick="showNameModal('+19788711356')">
-                    <i class="fas fa-phone"></i> Call Now
-                </button>
-                <a href="#contact" class="btn-header">
-                    <i class="fas fa-calendar-check"></i> Get Free Estimate
-                </a>
+                <a href="#contact" class="btn-primary">Get Free Estimate</a>
             </div>
         </div>
     </header>
@@ -1750,91 +1426,13 @@
             </video>
         </div>
         <div class="hero-overlay">
-            <div class="hero-content">
-                <h1 class="hero-title">Build the Kitchen You've Always Wanted</h1>
-                <p class="hero-subtitle">Tired of outdated cabinets, old countertops, and wasted space?</p>
-                <p class="hero-description">At Innov Builders, we turn ordinary kitchens into stunning, functional spaces designed for the way you live.</p>
-                <p class="hero-location">📍 Serving Massachusetts Homeowners with 11+ Years of Excellence</p>
-            </div>
-
-            <!-- HERO FORM -->
-            <div class="hero-form">
-                <h3 style="color: #FFC300; margin-bottom: 10px; font-size: 1.5rem;">Get Your Free Estimate</h3>
-                <p style="color: #ccc; margin-bottom: 25px; font-size: 0.95rem;">Start your kitchen transformation today</p>
-                <form id="heroContactForm">
-                    <div class="form-group">
-                        <label for="heroName">Full Name *</label>
-                        <input type="text" id="heroName" name="name" required placeholder="John Smith">
-                    </div>
-                    <div class="form-group">
-                        <label for="heroEmail">Email *</label>
-                        <input type="email" id="heroEmail" name="email" required placeholder="john@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="heroPhone">Phone *</label>
-                        <input type="tel" id="heroPhone" name="phone" required placeholder="(555) 123-4567">
-                    </div>
-                    <div class="form-group">
-                        <label for="heroService">What are you looking for? *</label>
-                        <select id="heroService" name="service" required>
-                            <option value="">Select a service...</option>
-                            <option value="complete-remodel">Complete Kitchen Remodel</option>
-                            <option value="cabinets">New Cabinets & Storage</option>
-                            <option value="countertops">Countertops & Backsplash</option>
-                            <option value="layout">Kitchen Layout Redesign</option>
-                            <option value="appliances">Appliance Installation</option>
-                            <option value="other">Other / Not Sure</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Get Free Estimate
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- PHOTO GALLERY SECTION -->
-    <section class="photo-gallery">
-        <div class="section">
-            <h2 class="section-title">Our Kitchen Transformations</h2>
-            <p class="section-subtitle">Real projects, real results — see the quality and craftsmanship we bring to every kitchen</p>
-            
-            <div class="gallery-grid">
-                <!-- Nova imagem -->
-                <div class="gallery-item">
-                    <img src="galery/ChatGPT%20Image%2015%20de%20dez.%20de%202025%2C%2009_33_54.png" alt="Kitchen Remodeling Before After" loading="lazy">
-                </div>
-                
-                <!-- Sessão de fotos slider -->
-                <div class="gallery-item">
-                    <img src="sess%C3%A3o%20de%20fotos%20slider/484031374_601384859720644_150356441767015240_n.jpg" alt="Kitchen Remodeling Project 1" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="sess%C3%A3o%20de%20fotos%20slider/484590506_601384876387309_8447069373703294015_n.jpg" alt="Kitchen Remodeling Project 2" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="sess%C3%A3o%20de%20fotos%20slider/483922832_601384886387308_7200494897753210291_n.jpg" alt="Kitchen Remodeling Project 3" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="sess%C3%A3o%20de%20fotos%20slider/484484717_601384889720641_4598490299361360625_n.jpg" alt="Kitchen Remodeling Project 4" loading="lazy">
-                </div>
-                
-                <!-- Lexington Project Progress -->
-                <div class="gallery-item">
-                    <img src="lexington-progress/5.png" alt="Lexington Kitchen Remodel 4" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="lexington-progress/6.png" alt="Lexington Kitchen Remodel 5" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="lexington-progress/7.png" alt="Lexington Kitchen Remodel 6" loading="lazy">
-                </div>
-                
-                <!-- Before and After -->
-                <div class="gallery-item">
-                    <img src="before and afters/after (1).png" alt="Kitchen After Remodeling" loading="lazy">
-                </div>
+            <h1 class="hero-title">Build the Kitchen You’ve Always Wanted</h1>
+            <p class="hero-subtitle">Tired of outdated cabinets, old countertops, and wasted space?</p>
+            <p class="hero-location">📍 Serving Massachusetts Homeowners with 11+ Years of Excellence</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">
+                    <i class="fas fa-calculator"></i> Get Your Free Kitchen Estimate Today
+                </a>
             </div>
         </div>
     </section>
@@ -1942,6 +1540,35 @@
         <div class="text-center" style="margin-top: 40px;">
             <a href="#contact" class="btn-primary">
                 <i class="fas fa-arrow-right"></i> Book Your Free Consultation
+            </a>
+        </div>
+    </section>
+    <!-- BEFORE AFTER PORTFOLIO SECTION -->
+    <section class="portfolio section">
+        <h2 class="section-title">Before & After Kitchen Transformations</h2>
+        <p class="section-subtitle">See the incredible difference our kitchen remodeling makes</p>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="before-after-slider" data-project="kitchen-remodel">
+                    <img src="before and afters/after (1).png" alt="Kitchen After Remodeling" class="before-image">
+                    <img src="before and afters/before.jpg" alt="Kitchen Before Remodeling" class="after-image">
+                    <div class="slider-handle"></div>
+                    <div class="before-after-labels">
+                        <span class="before-label">BEFORE</span>
+                        <span class="after-label">AFTER</span>
+                    </div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Complete Kitchen Renovation</h3>
+                    <p>From outdated to outstanding</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center" style="margin-top: 40px;">
+            <a href="#contact" class="btn-primary">
+                <i class="fas fa-arrow-right"></i> Transform Your Kitchen — Contact Us Now
             </a>
         </div>
     </section>
@@ -2174,30 +1801,35 @@
             <form id="contactForm" class="contact-form">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required placeholder="John Smith">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        <input type="email" id="email" name="email" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone *</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                    <input type="tel" id="phone" name="phone" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="service">What are you looking for? *</label>
-                    <select id="service" name="service" required>
-                        <option value="">Select a service...</option>
-                        <option value="complete-remodel">Complete Kitchen Remodel</option>
-                        <option value="cabinets">New Cabinets & Storage</option>
-                        <option value="countertops">Countertops & Backsplash</option>
-                        <option value="layout">Kitchen Layout Redesign</option>
-                        <option value="appliances">Appliance Installation</option>
-                        <option value="other">Other / Not Sure</option>
-                    </select>
+                    <label for="project" style="color: #FFC300; font-weight: 600; margin-bottom: 15px; display: block;">What type of kitchen project are you planning? *</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="full-renovation" name="project_type[]" value="full-renovation">
+                            <label for="full-renovation">Full renovation</label>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="partial-remodel" name="project_type[]" value="partial-remodel">
+                            <label for="partial-remodel">Partial remodel (cabinets, countertops, flooring)</label>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="not-sure" name="project_type[]" value="not-sure">
+                            <label for="not-sure">Not sure yet</label>
+                        </label>
+                    </div>
                 </div>
                 
                 <div class="text-center">
@@ -2206,6 +1838,23 @@
                     </button>
                 </div>
             </form>
+
+            <div class="contact-info">
+                <div class="contact-info-grid">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(978) 871-0597</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@innovbuildersusa.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>50 New Salem St, Wakefield, MA 01880</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2245,224 +1894,12 @@
     </footer>
 
     <!-- FLOATING CALL BUTTON -->
-    <button class="floating-call" id="floatingCall" onclick="showNameModal('+19788711356')">
+    <div class="floating-call" id="floatingCall">
         <i class="fas fa-phone"></i>
         <div class="floating-call-text" id="floatingText">Get your free kitchen estimate</div>
-    </button>
-
-    <!-- NAME MODAL -->
-    <div class="name-modal" id="nameModal">
-        <div class="name-modal-content">
-            <h3>Before we call...</h3>
-            <p>May we have your name?</p>
-            <input type="text" id="nameInput" placeholder="Enter your name" />
-            <div class="name-modal-buttons">
-                <button class="btn-confirm" id="confirmCall">Call Now</button>
-                <button class="btn-cancel" id="cancelCall">Cancel</button>
-            </div>
-        </div>
     </div>
 
     <script>
-        // WEBHOOK CONFIGURATION
-        const WEBHOOK_URL = 'https://hook.us2.make.com/ctp3mh229k0mi9ujiy1xcu1xh84fpa3x';
-
-        // Helper function to detect platform from URL
-        function detectPlatform() {
-            const url = window.location.href.toLowerCase();
-            if (url.includes('google')) return 'GOOGLE ADS';
-            if (url.includes('meta') || url.includes('facebook') || url.includes('instagram')) return 'META';
-            return 'DIRECT';
-        }
-
-        // Helper function to get source (page name)
-        function getSource() {
-            return document.title || 'Kitchen Remodeling';
-        }
-
-        // Helper function to send data to webhook
-        async function sendToWebhook(data) {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 8000);
-            try {
-                await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
-                    signal: controller.signal
-                });
-            } catch (err) {
-                console.error('Webhook error:', err);
-            } finally {
-                clearTimeout(timeoutId);
-            }
-        }
-
-        // Hero form submission
-        const heroForm = document.getElementById('heroContactForm');
-        if (heroForm) {
-            heroForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const formData = new FormData(this);
-                
-                // Build webhook data with required fields
-                const webhookData = {
-                    NOME: formData.get('name'),
-                    EMAIL: formData.get('email'),
-                    TELEFONE: formData.get('phone'),
-                    PERGUNTA: formData.get('service'),
-                    PLATAFORMA: detectPlatform(),
-                    FONTE: getSource(),
-                    QUANDO: new Date().toISOString()
-                };
-
-                // Loading state
-                const submitBtn = this.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitBtn.disabled = true;
-
-                await sendToWebhook(webhookData);
-                window.location.href = 'thank-you.html';
-            });
-        }
-
-        // Main contact form submission  
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const formData = new FormData(this);
-                
-                // Build webhook data with required fields
-                const webhookData = {
-                    NOME: formData.get('name'),
-                    EMAIL: formData.get('email'),
-                    TELEFONE: formData.get('phone'),
-                    PERGUNTA: formData.get('service'),
-                    PLATAFORMA: detectPlatform(),
-                    FONTE: getSource(),
-                    QUANDO: new Date().toISOString()
-                };
-
-                // Loading state
-                const submitBtn = this.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitBtn.disabled = true;
-
-                await sendToWebhook(webhookData);
-                window.location.href = 'thank-you.html';
-            });
-        }
-
-        // NAME MODAL FUNCTIONALITY
-        const nameModal = document.getElementById('nameModal');
-        const nameInput = document.getElementById('nameInput');
-        const confirmCallBtn = document.getElementById('confirmCall');
-        const cancelCallBtn = document.getElementById('cancelCall');
-        let pendingPhoneNumber = '';
-
-        // Function to show modal
-        function showNameModal(phoneNumber) {
-            pendingPhoneNumber = phoneNumber;
-            nameModal.classList.add('show');
-            nameInput.value = '';
-            setTimeout(() => nameInput.focus(), 300);
-        }
-
-        // Function to hide modal
-        function hideNameModal() {
-            nameModal.classList.remove('show');
-            pendingPhoneNumber = '';
-        }
-
-        // Intercept all tel: links
-        function setupCallInterception() {
-            const telLinks = document.querySelectorAll('a[href^="tel:"]');
-            console.log('Found', telLinks.length, 'tel links');
-            telLinks.forEach(function(el) {
-                el.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const phoneNumber = el.getAttribute('href');
-                    console.log('Phone link clicked:', phoneNumber);
-                    showNameModal(phoneNumber);
-                }, true);
-            });
-        }
-
-        // Setup call interception on page load
-        setupCallInterception();
-
-        // Confirm call button - SEND TO WEBHOOK
-        confirmCallBtn.addEventListener('click', async function() {
-            const userName = nameInput.value.trim();
-            
-            if (!userName) {
-                nameInput.style.borderColor = '#ff4444';
-                nameInput.placeholder = 'Please enter your name';
-                nameInput.focus();
-                return;
-            }
-
-            const phoneToCall = pendingPhoneNumber;
-            console.log('User name:', userName);
-            console.log('Phone to call:', phoneToCall);
-
-            // Change button to loading state
-            const originalText = confirmCallBtn.innerHTML;
-            confirmCallBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            confirmCallBtn.disabled = true;
-
-            // Send call data to webhook
-            const webhookData = {
-                NOME: userName,
-                EMAIL: '',
-                TELEFONE: phoneToCall.replace('tel:', '').replace('+1', ''),
-                PERGUNTA: 'LIGAÇÃO - Call Now Button',
-                PLATAFORMA: detectPlatform(),
-                FONTE: getSource(),
-                QUANDO: new Date().toISOString()
-            };
-
-            await sendToWebhook(webhookData);
-
-            localStorage.setItem('userName', userName);
-            hideNameModal();
-            
-            // Restore button
-            confirmCallBtn.innerHTML = originalText;
-            confirmCallBtn.disabled = false;
-            
-            setTimeout(() => {
-                console.log('Making call to:', phoneToCall);
-                if (phoneToCall) {
-                    window.location.href = phoneToCall;
-                } else {
-                    console.error('No phone number to call!');
-                }
-            }, 300);
-        });
-
-        // Cancel button
-        cancelCallBtn.addEventListener('click', hideNameModal);
-
-        // Close modal on background click
-        nameModal.addEventListener('click', function(e) {
-            if (e.target === nameModal) {
-                hideNameModal();
-            }
-        });
-
-        // Allow Enter key to submit
-        nameInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                confirmCallBtn.click();
-            }
-        });
-
         // Smooth scrolling for anchor links - all buttons lead to contact form
         document.querySelectorAll('a[href^="#"], a.btn-primary, a.btn-secondary').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -2477,11 +1914,22 @@
             });
         });
 
-        // Floating call button - show text after 5 seconds
+        // Floating call button functionality
+        const floatingCall = document.getElementById('floatingCall');
         const floatingText = document.getElementById('floatingText');
+
+        // Show text after 5 seconds
         setTimeout(() => {
             floatingText.classList.add('show');
         }, 5000);
+
+        // Click handler for floating button
+        floatingCall.addEventListener('click', function() {
+            document.querySelector('#contact').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
 
         // Header background on scroll
         window.addEventListener('scroll', function() {
@@ -2724,7 +2172,172 @@
         setInterval(() => {
             changePhotoSlide(1);
         }, 6000);
-    </script>
 
+        // Before/After Slider Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = document.querySelectorAll('.before-after-slider');
+            
+            sliders.forEach(slider => {
+                const handle = slider.querySelector('.slider-handle');
+                const afterImage = slider.querySelector('.after-image');
+                let isDragging = false;
+                
+                // Mouse events
+                handle.addEventListener('mousedown', startDrag);
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('mouseup', stopDrag);
+                
+                // Touch events for mobile
+                handle.addEventListener('touchstart', startDrag, { passive: false });
+                document.addEventListener('touchmove', drag, { passive: false });
+                document.addEventListener('touchend', stopDrag);
+                
+                // Click anywhere on slider to move handle
+                slider.addEventListener('click', function(e) {
+                    if (e.target === handle || handle.contains(e.target)) return;
+                    
+                    const rect = slider.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const percentage = (x / rect.width) * 100;
+                    
+                    updateSlider(Math.max(0, Math.min(100, percentage)));
+                });
+                
+                function startDrag(e) {
+                    isDragging = true;
+                    e.preventDefault();
+                    slider.style.cursor = 'col-resize';
+                }
+                
+                function drag(e) {
+                    if (!isDragging) return;
+                    
+                    e.preventDefault();
+                    const rect = slider.getBoundingClientRect();
+                    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+                    const x = clientX - rect.left;
+                    const percentage = (x / rect.width) * 100;
+                    
+                    updateSlider(Math.max(0, Math.min(100, percentage)));
+                }
+                
+                function stopDrag() {
+                    isDragging = false;
+                    slider.style.cursor = 'col-resize';
+                }
+                
+                function updateSlider(percentage) {
+                    handle.style.left = percentage + '%';
+                    afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+                }
+                
+                // Auto-animate on hover for first time visitors
+                let hasInteracted = false;
+                slider.addEventListener('mouseenter', function() {
+                    if (!hasInteracted) {
+                        autoAnimate();
+                    }
+                });
+                
+                function autoAnimate() {
+                    let progress = 0;
+                    const duration = 2000; // 2 seconds
+                    const startTime = Date.now();
+                    
+                    function animate() {
+                        const elapsed = Date.now() - startTime;
+                        progress = Math.min(elapsed / duration, 1);
+                        
+                        // Smooth easing function
+                        const easeInOut = progress < 0.5 
+                            ? 2 * progress * progress 
+                            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+                        
+                        const percentage = 50 + (Math.sin(easeInOut * Math.PI * 2) * 25);
+                        updateSlider(percentage);
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            updateSlider(50); // Return to center
+                        }
+                    }
+                    
+                    animate();
+                }
+                
+                slider.addEventListener('mousedown', () => hasInteracted = true);
+                slider.addEventListener('touchstart', () => hasInteracted = true);
+            });
+        });
+
+        // Contact Form Handling - Send to webhook (Main)
+        document.addEventListener('DOMContentLoaded', function() {
+            const WEBHOOK_URL = 'https://hook.us2.make.com/ctp3mh229k0mi9ujiy1xcu1xh84fpa3x';
+            const CAMPAIGN_NAME = 'Main';
+
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Collect form data and preserve arrays
+                const formData = new FormData(this);
+                const data = {};
+                for (const [key, value] of formData.entries()) {
+                    if (key.endsWith('[]')) {
+                        const baseKey = key.slice(0, -2);
+                        if (!Array.isArray(data[baseKey])) data[baseKey] = [];
+                        data[baseKey].push(value);
+                    } else if (data[key] !== undefined) {
+                        data[key] = Array.isArray(data[key]) ? [...data[key], value] : [data[key], value];
+                    } else {
+                        data[key] = value;
+                    }
+                }
+
+                // Extra meta info
+                const params = new URLSearchParams(window.location.search);
+                const utm = {};
+                ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid'].forEach(k => {
+                    const v = params.get(k);
+                    if (v) utm[k] = v;
+                });
+                data.meta = {
+                    campaignUrl: window.location.href,
+                    pageTitle: document.title,
+                    campaignName: CAMPAIGN_NAME,
+                    referrer: document.referrer || null,
+                    userAgent: navigator.userAgent,
+                    timestamp: new Date().toISOString(),
+                    utm
+                };
+
+                // Loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+
+                // Send to webhook with timeout
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000);
+                try {
+                    await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                        signal: controller.signal
+                    });
+                } catch (err) {
+                    console.error('Webhook error:', err);
+                } finally {
+                    clearTimeout(timeoutId);
+                    window.location.href = 'thank-you.html';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
