@@ -2350,8 +2350,8 @@ ai<!DOCTYPE html>
     <div class="name-modal" id="nameModal">
         <div class="name-modal-content">
             <h3>Before we call...</h3>
-            <p>We might be busy with a project. Leave your email so we can reach you back if we miss your call:</p>
-            <input type="email" id="emailInput" placeholder="Enter your email" autocomplete="email" />
+            <p>We might be busy with a project. Leave your phone number so we can reach you back if we miss your call:</p>
+            <input type="tel" id="phoneInput" placeholder="Enter your phone number" autocomplete="tel" />
             <div class="name-modal-buttons">
                 <button class="btn-confirm" id="confirmCall">Call Now</button>
                 <button class="btn-cancel" id="cancelCall">Cancel</button>
@@ -2456,7 +2456,7 @@ ai<!DOCTYPE html>
 
         // NAME MODAL FUNCTIONALITY
         const nameModal = document.getElementById('nameModal');
-        const emailInput = document.getElementById('emailInput');
+        const phoneInput = document.getElementById('phoneInput');
         const confirmCallBtn = document.getElementById('confirmCall');
         const cancelCallBtn = document.getElementById('cancelCall');
         let pendingPhoneNumber = '';
@@ -2465,8 +2465,8 @@ ai<!DOCTYPE html>
         function showNameModal(phoneNumber) {
             pendingPhoneNumber = phoneNumber;
             nameModal.classList.add('show');
-            emailInput.value = '';
-            setTimeout(() => emailInput.focus(), 300);
+            phoneInput.value = '';
+            setTimeout(() => phoneInput.focus(), 300);
         }
 
         // Function to hide modal
@@ -2492,24 +2492,24 @@ ai<!DOCTYPE html>
         // Setup call interception on page load
         setupCallInterception();
 
-        // Confirm call button - Send only EMAIL to webhook
+        // Confirm call button - Send PHONE to webhook
         confirmCallBtn.addEventListener('click', async function() {
-            const userEmail = emailInput.value.trim();
+            const userPhone = phoneInput.value.trim();
             
-            if (!userEmail || !userEmail.includes('@')) {
-                emailInput.style.borderColor = '#ff4444';
-                emailInput.placeholder = 'Please enter a valid email';
-                emailInput.focus();
+            if (!userPhone || userPhone.length < 10) {
+                phoneInput.style.borderColor = '#ff4444';
+                phoneInput.placeholder = 'Please enter a valid phone number';
+                phoneInput.focus();
                 return;
             }
 
             const phoneToCall = pendingPhoneNumber;
-            console.log('User email:', userEmail);
+            console.log('User phone:', userPhone);
             console.log('Phone to call:', phoneToCall);
 
-            // Send EMAIL to webhook with consistent format
+            // Send PHONE to webhook with consistent format
             const webhookData = {
-                EMAIL: userEmail,
+                phone: userPhone,
                 traffic_source: 'Meta Ads',
                 PLATAFORMA: 'META',
                 FONTE: 'Kitchen Remodeling Massachusetts - Meta Campaign - Phone Call',
@@ -2526,7 +2526,7 @@ ai<!DOCTYPE html>
                 body: JSON.stringify(webhookData)
             }).catch(error => console.log('Webhook error:', error));
 
-            localStorage.setItem('userEmail', userEmail);
+            localStorage.setItem('userPhone', userPhone);
             hideNameModal();
             
             // Make the call after a small delay
@@ -2552,7 +2552,7 @@ ai<!DOCTYPE html>
         });
 
         // Allow Enter key to submit
-        emailInput.addEventListener('keypress', function(e) {
+        phoneInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 confirmCallBtn.click();
             }
